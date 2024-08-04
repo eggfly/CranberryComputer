@@ -1,2 +1,2 @@
-# LavenderComputer
-A RPI Zero2W based QWERTY computer
+# SoundComputer
+A RPI based QWERTY multimedia computer.
