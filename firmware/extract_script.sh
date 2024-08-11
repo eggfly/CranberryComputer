@@ -1,0 +1,2 @@
+cat beepy-raspberry-pi-zero2_2023_12_12_img.7z.aa beepy-raspberry-pi-zero2_2023_12_12_img.7z.ab beepy-raspberry-pi-zero2_2023_12_12_img.7z.ac beepy-raspberry-pi-zero2_2023_12_12_img.7z.ad beepy-raspberry-pi-zero2_2023_12_12_img.7z.ae beepy-raspberry-pi-zero2_2023_12_12_img.7z.af beepy-raspberry-pi-zero2_2023_12_12_img.7z.ag beepy-raspberry-pi-zero2_2023_12_12_img.7z.ah > beepy-raspberry-pi-zero2_2023_12_12_img.7z
+7z e beepy-raspberry-pi-zero2_2023_12_12_img.7z
