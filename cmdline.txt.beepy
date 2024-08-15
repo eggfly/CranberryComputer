@@ -1,0 +1,1 @@
+console=serial0,115200 console=tty1 maxcpus=2 root=PARTUUID=f2d0bdfa-02 rootfstype=ext4 fsck.repair=yes rootwait cfg80211.ieee80211_regdom=GB console=tty2 fbcon=font:VGA8x8 fbcon=map:10 logo.nologo=1 quiet fsck.mode=skip ipv6.disable=1
