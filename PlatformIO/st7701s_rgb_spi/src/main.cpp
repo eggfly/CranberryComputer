@@ -2,7 +2,7 @@
 
 #include <Arduino_GFX_Library.h>
 
-#include "lcd_init_cmds.h"
+#include "lcd_init_cmds2.h"
 
 #define AUTO_FLUSH false
 

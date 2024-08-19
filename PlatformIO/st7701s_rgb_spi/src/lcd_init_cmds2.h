@@ -46,6 +46,11 @@ static const uint8_t st7701_my_init_operations[] = {
     0xCC,
     0x10,
 
+    WRITE_C8_D8,
+    0x3A,
+    0x70, // Interface Pixel Format: 0x70 RGB888, 0x60 RGB666, 0x50 RGB565
+
+
     WRITE_COMMAND_8,
     0xB0, // Positive Voltage Gamma Control
     WRITE_BYTES,
@@ -101,19 +106,20 @@ static const uint8_t st7701_my_init_operations[] = {
 
     WRITE_C8_D8,
     0xB0,
-    0x65, // Vop=4.7375v
+    0x65, // Vop=4.8, 3.5375+(VRHA[7:0]x0.0125)
     WRITE_C8_D8,
     0xB1,
-    0x71, // VCOM=32, 1.5125
+    // 0x82, // VCOM=32, 0.1+(VCOM[7:0] x 0.0125) = 1.725
+    0x82, // VCOM=32, 0.1+(VCOM[7:0] x 0.0125) = 1.725
     WRITE_C8_D8,
     0xB2,
-    0x87, // VGH=15v
+    0x82, // VGH=12.5v
     WRITE_C8_D8,
     0xB3,
     0x80,
     WRITE_C8_D8,
     0xB5,
-    0x4D, // VGL=-10.17v
+    0x42, // VGL=-10.17v
     WRITE_C8_D8,
     0xB7,
     0x85,
@@ -285,9 +291,9 @@ static const uint8_t st7701_my_init_operations[] = {
     0x08,
     0x08,
     0x08,
-    0x45,
+    0x40,
     0x3F,
-    0x54,
+    0x64,
 
     // WRITE_C8_D8, 0xE5, 0xE4,
 
@@ -378,14 +384,17 @@ static const uint8_t st7701_my_init_operations[] = {
     0x00,
     WRITE_COMMAND_8,
     0x29, // Display On
-    WRITE_C8_D8,
-    0x3A,
-    0x70, // Interface Pixel Format: 0x70 RGB888, 0x60 RGB666, 0x50 RGB565
+
+
     WRITE_COMMAND_8,
     0x29, // Display On
     WRITE_C8_D8,
     0x36,
     0x08, // BGR
+
+    WRITE_C8_D8,
+    0x35,
+    0x10, // TE OFF
 
     END_WRITE,
 };
