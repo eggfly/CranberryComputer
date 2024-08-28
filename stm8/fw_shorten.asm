@@ -717,12 +717,12 @@
             call  0x8215                           ;0x008789,    CD 82 15       
             clrw  X                                ;0x00878C,    5F             
             call  0x8215                           ;0x00878D,    CD 82 15       
-            ldw   X, #0x0029                       ;0x008790,    AE 00 29       
+            ldw   X, #0x0029                       ;0x008790,    AE 00 29       // 0x29: Display On
             call  0x81EC                           ;0x008793,    CD 81 EC       
             ldw   X, #0x0035                       ;0x008796,    AE 00 35       
             call  0x81EC                           ;0x008799,    CD 81 EC       
-            ldw   X, #0x0010                       ;0x00879C,    AE 00 10       
-            call  0x8215                           ;0x00879F,    CD 82 15       
+            ldw   X, #0x0010                       ;0x00879C,    AE 00 10       // 0x35, 0x10 -> TE OFF
+            call  0x8215                           ;0x00879F,    CD 82 15       // 我需要改成 0x36 0x08 -> BGR
             ldw   X, #0x00C8                       ;0x0087A2,    AE 00 C8       
             call  0x810C                           ;0x0087A5,    CD 81 0C       // delay() and return
             ret                                    ;0x0087A8,    81             // END OF ??
