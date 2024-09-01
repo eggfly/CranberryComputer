@@ -14,6 +14,9 @@ xrandr --output "DPI-1" --scale 1.0
 cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_cur_freq
 ```
 
+kernel modules to load at boot time.
+`/etc/modules-load.d/modules.conf`
+
 ```
 $ pinctrl  get
  0: a2    -- | hi // ID_SDA/GPIO0 = PCLK
