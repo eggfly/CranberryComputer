@@ -208,3 +208,11 @@ i2c-20	i2c       	fef04500.i2c                    	I2C adapter
 i2c-21	i2c       	fef09500.i2c                    	I2C adapter
 i2c-22	i2c       	i2c@0                           	I2C adapter
 ```
+
+i2c_arm=off后
+```
+$ sudo i2cdetect -l
+i2c-20	i2c       	fef04500.i2c                    	I2C adapter
+i2c-21	i2c       	fef09500.i2c                    	I2C adapter
+i2c-22	i2c       	i2c@0                           	I2C adapter
+```
