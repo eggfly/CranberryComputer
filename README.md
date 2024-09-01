@@ -200,3 +200,11 @@ $ pinctrl
 52: a0    pd | lo // RGMII_TXCLK/GPIO52 = SD0_DAT2
 53: a0    pd | lo // RGMII_TXCTL/GPIO53 = SD0_DAT3
 ```
+打开dtparam=i2c_arm=on以后
+```
+$ sudo i2cdetect -l
+i2c-1	i2c       	bcm2835 (i2c@7e804000)          	I2C adapter
+i2c-20	i2c       	fef04500.i2c                    	I2C adapter
+i2c-21	i2c       	fef09500.i2c                    	I2C adapter
+i2c-22	i2c       	i2c@0                           	I2C adapter
+```
