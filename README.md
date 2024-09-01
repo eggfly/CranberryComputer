@@ -15,7 +15,7 @@ cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_cur_freq
 ```
 
 ```
-pinctrl  get
+$ pinctrl  get
  0: a2    -- | hi // ID_SDA/GPIO0 = PCLK
  1: a2    -- | hi // ID_SCL/GPIO1 = DE
  2: a2    -- | hi // GPIO2 = LCD_VSYNC
@@ -70,4 +70,9 @@ pinctrl  get
 51: a0    -- | hi // SD_DATA1_R/GPIO51 = SD0_DAT1
 52: a0    -- | hi // SD_DATA2_R/GPIO52 = SD0_DAT2
 53: a0    -- | hi // SD_DATA3_R/GPIO53 = SD0_DAT3
+```
+```
+$ i2cdetect -l
+i2c-2	i2c       	bcm2835 (i2c@7e805000)          	I2C adapter
+i2c-11	i2c       	i2c@0                           	I2C adapter
 ```
