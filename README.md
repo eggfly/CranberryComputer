@@ -1,6 +1,11 @@
 # SoundComputer
 A RPI based QWERTY multimedia computer.
 
+查看系统build版本:
+```
+strings /boot/start.elf | grep VC_BUILD_ID 
+```
+
 ```
 wlr-randr --output "DPI-1" --scale 1.0
 ```
