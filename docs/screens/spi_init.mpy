@@ -1,0 +1,342 @@
+from machine import Pin
+import time
+
+# Define pins
+LCD_SDA = Pin(18, Pin.OUT)
+LCD_SCL = Pin(19, Pin.OUT)
+LCD_CS = Pin(21, Pin.OUT)
+
+def SPI_SendData(data_byte):
+    for n in range(8):
+        LCD_SDA.value((data_byte & 0x80) != 0)
+        data_byte <<= 1
+      
+        LCD_SCL.off()
+        time.sleep_us(1)
+        LCD_SCL.on()
+        time.sleep_us(1)
+
+def SPI_WR_COMMAND(command):
+    LCD_CS.off()
+
+    # Send Command
+    LCD_SDA.on() # Command indicator
+    LCD_SCL.off()
+    time.sleep_us(1)
+    LCD_SCL.on()
+
+    SPI_SendData(command)
+    LCD_CS.on()
+
+def SPI_WR_DATA(data):
+    LCD_CS.off()
+
+    # Send Data
+    LCD_SDA.off()  # Data indicator
+    LCD_SCL.off()
+    time.sleep_us(1)
+    LCD_SCL.on()
+  
+    SPI_SendData(data)
+    LCD_CS.on()
+
+def Lcd_init():
+    SPI_WR_COMMAND(0xFF)
+    SPI_WR_DATA(0x77)
+    SPI_WR_DATA(0x01)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x13)
+
+    SPI_WR_COMMAND(0xEF)
+    SPI_WR_DATA(0x08)
+
+    SPI_WR_COMMAND(0xFF)
+    SPI_WR_DATA(0x77)
+    SPI_WR_DATA(0x01)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x10)
+
+    SPI_WR_COMMAND(0xC0)
+    SPI_WR_DATA(0x4F)
+    SPI_WR_DATA(0x00)
+
+    SPI_WR_COMMAND(0xC1)
+    SPI_WR_DATA(0x10)
+    SPI_WR_DATA(0x02)
+
+    SPI_WR_COMMAND(0xC2)
+    SPI_WR_DATA(0x07)
+    SPI_WR_DATA(0x02)
+
+    SPI_WR_COMMAND(0xCC)
+    SPI_WR_DATA(0x10)
+
+    SPI_WR_COMMAND(0xB0)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x10)
+    SPI_WR_DATA(0x17)
+    SPI_WR_DATA(0x0D)
+    SPI_WR_DATA(0x11)
+    SPI_WR_DATA(0x06)
+    SPI_WR_DATA(0x05)
+    SPI_WR_DATA(0x08)
+    SPI_WR_DATA(0x07)
+    SPI_WR_DATA(0x1F)
+    SPI_WR_DATA(0x04)
+    SPI_WR_DATA(0x11)
+    SPI_WR_DATA(0x0E)
+    SPI_WR_DATA(0x29)
+    SPI_WR_DATA(0x30)
+    SPI_WR_DATA(0x1F)
+
+    SPI_WR_COMMAND(0xB1)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x0D)
+    SPI_WR_DATA(0x14)
+    SPI_WR_DATA(0x0E)
+    SPI_WR_DATA(0x11)
+    SPI_WR_DATA(0x06)
+    SPI_WR_DATA(0x04)
+    SPI_WR_DATA(0x08)
+    SPI_WR_DATA(0x08)
+    SPI_WR_DATA(0x20)
+    SPI_WR_DATA(0x05)
+    SPI_WR_DATA(0x13)
+    SPI_WR_DATA(0x13)
+    SPI_WR_DATA(0x26)
+    SPI_WR_DATA(0x30)
+    SPI_WR_DATA(0x1F)
+
+    SPI_WR_COMMAND(0xFF)
+    SPI_WR_DATA(0x77)
+    SPI_WR_DATA(0x01)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x11)
+
+    SPI_WR_COMMAND(0xB0)
+    SPI_WR_DATA(0x65)
+
+    SPI_WR_COMMAND(0xB1)
+    SPI_WR_DATA(0x71)
+
+    SPI_WR_COMMAND(0xB2)
+    SPI_WR_DATA(0x87)
+
+    SPI_WR_COMMAND(0xB3)
+    SPI_WR_DATA(0x80)
+
+    SPI_WR_COMMAND(0xB5)
+    SPI_WR_DATA(0x4D)
+
+    SPI_WR_COMMAND(0xB7)
+    SPI_WR_DATA(0x85)
+
+    SPI_WR_COMMAND(0xB8)
+    SPI_WR_DATA(0x20)
+
+    SPI_WR_COMMAND(0xC1)
+    SPI_WR_DATA(0x78)
+
+    SPI_WR_COMMAND(0xC2)
+    SPI_WR_DATA(0x78)
+
+    SPI_WR_COMMAND(0xD0)
+    SPI_WR_DATA(0x88)
+
+    SPI_WR_COMMAND(0xEE)
+    SPI_WR_DATA(0x42)
+
+    SPI_WR_COMMAND(0xE0)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x02)
+
+    SPI_WR_COMMAND(0xE1)
+    SPI_WR_DATA(0x04)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0x06)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0x05)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0x07)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x44)
+    SPI_WR_DATA(0x44)
+
+    SPI_WR_COMMAND(0xE2)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+
+    SPI_WR_COMMAND(0xE3)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x22)
+    SPI_WR_DATA(0x22)
+
+    SPI_WR_COMMAND(0xE4)
+    SPI_WR_DATA(0x44)
+    SPI_WR_DATA(0x44)
+
+    SPI_WR_COMMAND(0xE5)
+    SPI_WR_DATA(0x0C)
+    SPI_WR_DATA(0x90)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0x0E)
+    SPI_WR_DATA(0x92)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0x08)
+    SPI_WR_DATA(0x8C)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0x0A)
+    SPI_WR_DATA(0x8E)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0xA0)
+
+    SPI_WR_COMMAND(0xE6)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x22)
+    SPI_WR_DATA(0x22)
+
+    SPI_WR_COMMAND(0xE7)
+    SPI_WR_DATA(0x44)
+    SPI_WR_DATA(0x44)
+
+    SPI_WR_COMMAND(0xE8)
+    SPI_WR_DATA(0x0D)
+    SPI_WR_DATA(0x91)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0x0F)
+    SPI_WR_DATA(0x93)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0x09)
+    SPI_WR_DATA(0x8D)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0x0B)
+    SPI_WR_DATA(0x8F)
+    SPI_WR_DATA(0xA0)
+    SPI_WR_DATA(0xA0)
+
+    SPI_WR_COMMAND(0xEB)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0xE4)
+    SPI_WR_DATA(0xE4)
+    SPI_WR_DATA(0x44)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x40)
+
+    SPI_WR_COMMAND(0xED)
+    SPI_WR_DATA(0xFF)
+    SPI_WR_DATA(0xF5)
+    SPI_WR_DATA(0x47)
+    SPI_WR_DATA(0x6F)
+    SPI_WR_DATA(0x0B)
+    SPI_WR_DATA(0xA1)
+    SPI_WR_DATA(0xAB)
+    SPI_WR_DATA(0xFF)
+    SPI_WR_DATA(0xFF)
+    SPI_WR_DATA(0xBA)
+    SPI_WR_DATA(0x1A)
+    SPI_WR_DATA(0xB0)
+    SPI_WR_DATA(0xF6)
+    SPI_WR_DATA(0x74)
+    SPI_WR_DATA(0x5F)
+    SPI_WR_DATA(0xFF)
+
+    SPI_WR_COMMAND(0xEF)
+    SPI_WR_DATA(0x08)
+    SPI_WR_DATA(0x08)
+    SPI_WR_DATA(0x08)
+    SPI_WR_DATA(0x45)
+    SPI_WR_DATA(0x3F)
+    SPI_WR_DATA(0x54)
+
+    SPI_WR_COMMAND(0xFF)
+    SPI_WR_DATA(0x77)
+    SPI_WR_DATA(0x01)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+
+    SPI_WR_COMMAND(0xFF)
+    SPI_WR_DATA(0x77)
+    SPI_WR_DATA(0x01)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x13)
+
+    SPI_WR_COMMAND(0xE6)
+    SPI_WR_DATA(0x16)
+
+    SPI_WR_COMMAND(0xE8)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x0E)
+
+    SPI_WR_COMMAND(0xFF)
+    SPI_WR_DATA(0x77)
+    SPI_WR_DATA(0x01)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+
+    SPI_WR_COMMAND(0x11)
+    Delay(120)
+
+    SPI_WR_COMMAND(0xFF)
+    SPI_WR_DATA(0x77)
+    SPI_WR_DATA(0x01)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x13)
+
+    SPI_WR_COMMAND(0xE8)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x0C)
+    Delay(10)
+
+    SPI_WR_COMMAND(0xE8)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+
+    SPI_WR_COMMAND(0xFF)
+    SPI_WR_DATA(0x77)
+    SPI_WR_DATA(0x01)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+    SPI_WR_DATA(0x00)
+
+    SPI_WR_COMMAND(0x29)
+
+    SPI_WR_COMMAND(0x3A)
+    SPI_WR_DATA(0x77)
+    SPI_WR_COMMAND(0x29)
+
+    SPI_WR_COMMAND(0x36)
+    SPI_WR_DATA(0x08)
+
+def Delay(ms):
+    time.sleep_ms(ms)
+
+# Initializing the LCD
+Lcd_init()
